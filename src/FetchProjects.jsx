@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 const client = createClient({
   space: 'hxyjomqpu4jz',
   environment: 'master', // defaults to 'master' if not set
-  accessToken: 'o9NRNUs7PMKS58K1I0igUj7y_EvryFR7JchoseQBYOY',
+  accessToken: import.meta.env.VITE_API_KEY
 });
 export const FetchProjects = ()=>{
   const [isLoading,setIsLoading] = useState(true);
@@ -12,7 +12,7 @@ export const FetchProjects = ()=>{
 
   const getItems = async()=>{
     try {
-      const response  = await client.getEntries({content_type:'projects'}).then(res=>res);
+      const response  = await client.getEntries({content_type:'projects'})
       const projects = response.items.map(item=>{
         // console.log(item.fields);
         const {title,image,url} = item.fields
